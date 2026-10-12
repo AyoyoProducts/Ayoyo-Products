@@ -1,254 +1,45 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ayoyo Products (M) Sdn. Bhd. — Premium Snacks</title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Roboto, Arial, sans-serif; }
-        
-        :root {
-            --primary: #a4c639;
-            --primary-darker: #92b330;
-            --primary-light: #e9f2d0;
-            --text-dark: #445520;
-            --white: #ffffff;
-            --soft-bg: #f7fbeb;
-            --border-green: #d4e5a8;
-            --pudding-accent: #f9a825;
-        }
-
-        body { line-height: 1.7; color: var(--text-dark); background: var(--soft-bg); }
-        .container { max-width: 900px; margin: 0 auto; padding: 0 20px; }
-
-        header { 
-            background: var(--white); 
-            box-shadow: 0 2px 6px rgba(164,198,57,0.15); 
-            position: sticky; top: 0; z-index: 100; 
-        }
-        .nav-wrap { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; }
-        .logo { height: 60px; }
-        nav a { 
-            margin-left: 20px; text-decoration: none; color: var(--text-dark); 
-            font-weight: 500; transition: color 0.3s; 
-        }
-        nav a:hover { color: var(--primary-darker); }
-        .menu-toggle { display: none; font-size: 28px; cursor: pointer; color: var(--text-dark); }
-
-        .hero { 
-            background: linear-gradient(rgba(164,198,57,0.85), rgba(146,179,48,0.85)), 
-                        url("factory.jpg") center/cover no-repeat; 
-            color: white; padding: 100px 20px; text-align: center; 
-        }
-        .hero h1 { font-size: 2.5rem; margin-bottom: 12px; }
-        .hero p { font-size: 1.1rem; margin-bottom: 30px; max-width: 700px; margin-left: auto; margin-right: auto; }
-        .btn { 
-            display: inline-block; background: var(--primary); color: white; 
-            padding: 12px 28px; border-radius: 8px; text-decoration: none; font-weight: 600; 
-            transition: background 0.3s, transform 0.2s; 
-        }
-        .btn:hover { background: var(--primary-darker); transform: translateY(-2px); }
-
-        section { padding: 60px 20px; }
-        h2 { text-align: center; font-size: 2rem; color: var(--text-dark); margin-bottom: 40px; position: relative; }
-        h2::after { 
-            content: ''; width: 70px; height: 4px; background: var(--primary); 
-            position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%); 
-        }
-
-        /* Pudding specialty highlight */
-        .pudding-section h3.category-title {
-            color: var(--pudding-accent);
-            border-bottom-color: #ffe0b2;
-        }
-        .pudding-badge {
-            display: inline-block;
-            background: var(--pudding-accent);
-            color: white;
-            padding: 4px 14px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            margin-left: 12px;
-        }
-
-        .category-title {
-            font-size: 1.5rem; color: var(--primary-darker); margin: 50px 0 25px;
-            padding-bottom: 10px; border-bottom: 3px solid var(--primary-light);
-        }
-
-        .product-card {
-            background: white; border-radius: 12px; padding: 25px; margin-bottom: 30px;
-            box-shadow: 0 4px 12px rgba(164,198,57,0.15);
-            border: 2px solid var(--border-green);
-        }
-        .product-img {
-            width: 100%; height: auto; border-radius: 8px; margin-bottom: 20px;
-        }
-        .product-name {
-            color: var(--primary-darker); font-size: 1.2rem; font-weight: 600; margin-bottom: 12px;
-        }
-        .product-details { color: var(--text-dark); }
-        .product-details p { margin-bottom: 8px; }
-        .product-details .sub-item { margin-left: 15px; margin-bottom: 6px; }
-
-        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
-        .about-img { 
-            width: 100%; border-radius: 10px; 
-            box-shadow: 0 4px 12px rgba(164,198,57,0.2); 
-            border: 3px solid var(--primary-light);
-        }
-
-        .why-section { background: var(--primary-light); }
-        .benefits { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 25px; }
-        .benefit-card { 
-            background: white; padding: 25px; border-radius: 10px; text-align: center;
-            box-shadow: 0 3px 8px rgba(164,198,57,0.12);
-            border-top: 4px solid var(--primary);
-        }
-        .benefit-card h3 { margin-bottom: 10px; font-size: 1rem; }
-
-        .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; }
-        .contact-info p { margin-bottom: 10px; }
-        .contact-info strong { color: var(--primary-darker); }
-
-        footer { 
-            background: var(--primary); color: white; 
-            text-align: center; padding: 25px 20px; font-size: 0.9rem; 
-        }
-
-        @media (max-width: 768px) {
-            .menu-toggle { display: block; }
-            nav { display: none; position: absolute; top: 100%; left: 0; right: 0; background: white; box-shadow: 0 4px 8px rgba(0,0,0,0.1); padding: 15px 0; }
-            nav.open { display: flex; flex-direction: column; }
-            nav a { margin: 10px 20px; }
-            .about-grid { grid-template-columns: 1fr; }
-            .hero h1 { font-size: 1.8rem; }
-        }
-    </style>
-</head>
-<body>
-
-<header>
-    <div class="container nav-wrap">
-        <a href="#"><img src="logo.png" alt="Ayoyo Products Logo" class="logo"></a>
-        <span class="menu-toggle" id="menuBtn">☰</span>
-        <nav id="navMenu">
-            <a href="#about">About Us</a>
-            <a href="#products">Our Products</a>
-            <a href="#contact">Contact</a>
-        </nav>
-    </div>
-</header>
-
-<section class="hero">
-    <div class="container">
-        <h1>Ayoyo Products (M) Sdn. Bhd.</h1>
-        <p>Specialist in Premium Pudding & Quality Snacks — Since 1996</p>
-        <a href="#products" class="btn">View Our Products</a>
-    </div>
-</section>
-
-<section id="about">
-    <div class="container">
-        <h2>About Us</h2>
-        <div class="about-grid">
-            <div>
-                <h3 style="color: var(--primary-darker); margin-bottom: 15px;">Who We Are</h3>
-                <p>Based in Johor Bahru and established since 1996, Ayoyo Products is dedicated to crafting high-quality desserts and snacks. We are especially proud of our premium pudding range — our signature specialty — alongside our full collection of confectionery and beverage products.</p>
-            </div>
-            <div>
-                <img src="factory.jpg" alt="Ayoyo Products Factory" class="about-img">
-            </div>
-        </div>
-    </div>
-</section>
-
 <section id="products">
     <div class="container">
         <h2>Our Products</h2>
 
         <!-- ==================================== -->
-        <!-- PUDDING & DESSERTS — FIRST & SEPARATED -->
+        <!-- PUDDING & DESSERTS — Our Specialty -->
         <!-- ==================================== -->
         <div class="pudding-section">
             <h3 class="category-title">Pudding & Desserts <span class="pudding-badge">Our Specialty</span></h3>
-            
             <div class="product-card">
-                <img src="pudding-mini-tray.jpg" alt="Mini Pudding Tray Pack" class="product-img">
-                <h4 class="product-name">Mini Pudding — Tray Pack</h4>
+                <img src="pudding-desserts.jpg" alt="Pudding & Desserts Range" class="product-img">
+                <h4 class="product-name">Pudding Range</h4>
                 <div class="product-details">
-                    <p>25gm x 15's x 24 trays / per carton</p>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <img src="pudding-mini-bag.jpg" alt="Mini Pudding Bag Pack" class="product-img">
-                <h4 class="product-name">Mini Pudding — Bag Pack</h4>
-                <div class="product-details">
-                    <p>25gm x 20's x 20 bags / per carton</p>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <img src="pudding-honeymelon.jpg" alt="Mini Pudding Honey Melon" class="product-img">
-                <h4 class="product-name">Mini Pudding — Honey Melon Flavour</h4>
-                <div class="product-details">
-                    <p>16gm x 75's x 8 pkt / per carton</p>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <img src="pudding-stick-strawberry.jpg" alt="Pudding Stick Strawberry" class="product-img">
-                <h4 class="product-name">Pudding Stick — Strawberry Flavour</h4>
-                <div class="product-details">
-                    <p>20gm x 15 sticks x 24 packs / per carton</p>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <img src="pudding-stick-mango.jpg" alt="Pudding Stick Mango" class="product-img">
-                <h4 class="product-name">Pudding Stick — Mango Flavour</h4>
-                <div class="product-details">
-                    <p>20gm x 15 sticks x 24 packs / per carton</p>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <img src="pudding-stick-honeymelon.jpg" alt="Pudding Stick Honey Melon" class="product-img">
-                <h4 class="product-name">Pudding Stick — Honey Melon Flavour</h4>
-                <div class="product-details">
-                    <p>20gm x 15 sticks x 24 packs / per carton</p>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <img src="pudding-120g-mango.jpg" alt="Pudding 120g Mango" class="product-img">
-                <h4 class="product-name">Mango Pudding — 120gm Cup</h4>
-                <div class="product-details">
-                    <p>120gm x 6's x 12 packs / per carton</p>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <img src="pudding-120g-lychee.jpg" alt="Pudding 120g Lychee" class="product-img">
-                <h4 class="product-name">Lychee Pudding — 120gm Cup</h4>
-                <div class="product-details">
-                    <p>120gm x 6's x 12 packs / per carton</p>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <img src="pudding-120g-assorted.jpg" alt="Pudding 120g Assorted" class="product-img">
-                <h4 class="product-name">Assorted Pudding — 120gm Cup</h4>
-                <div class="product-details">
-                    <p>Mango / Honeydew / Strawberry — 120gm x 6's x 12 packs / per carton</p>
+                    <p class="sub-item">• Pudding Cup 120gm — Mango / Lychee / Assorted (Mango/Honeydew/Strawberry)</p>
+                    <p class="sub-item">&nbsp;&nbsp;→ 120gm x 6's x 12 packs / per carton</p>
+                    <p class="sub-item" style="margin-top: 8px;">• Pudding Stick — Strawberry / Mango / Honey Melon</p>
+                    <p class="sub-item">&nbsp;&nbsp;→ 20gm x 15 sticks x 24 packs / per carton</p>
                 </div>
             </div>
         </div>
 
         <!-- ==================================== -->
-        <!-- NATA DE COCO — Combined -->
+        <!-- MINI PUDDING — Separate Section -->
+        <!-- ==================================== -->
+        <div class="pudding-section">
+            <h3 class="category-title">Mini Pudding <span class="pudding-badge">Our Specialty</span></h3>
+            <div class="product-card">
+                <img src="mini-pudding.jpg" alt="Mini Pudding Range" class="product-img">
+                <h4 class="product-name">Mini Pudding Range</h4>
+                <div class="product-details">
+                    <p class="sub-item">• Mini Pudding — Tray Pack</p>
+                    <p class="sub-item">&nbsp;&nbsp;→ 25gm x 15's x 24 trays / per carton</p>
+                    <p class="sub-item" style="margin-top: 8px;">• Mini Pudding — Bag Pack</p>
+                    <p class="sub-item">&nbsp;&nbsp;→ 25gm x 20's x 20 bags / per carton</p>
+                    <p class="sub-item" style="margin-top: 8px;">• Mini Pudding — Honey Melon Flavour</p>
+                    <p class="sub-item">&nbsp;&nbsp;→ 16gm x 75's x 8 pkt / per carton</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================================== -->
+        <!-- NATA DE COCO -->
         <!-- ==================================== -->
         <h3 class="category-title">Nata De Coco / Sari Kelapa</h3>
         <div class="product-card">
@@ -261,7 +52,7 @@
         </div>
 
         <!-- ==================================== -->
-        <!-- CANDY TOYS — Combined -->
+        <!-- CANDY TOYS -->
         <!-- ==================================== -->
         <h3 class="category-title">Candy Toys</h3>
         <div class="product-card">
@@ -271,116 +62,65 @@
                 <p class="sub-item">• Standee — 1 x 144 pcs</p>
                 <p class="sub-item">• Tray (Assorted) — 1 x 36's</p>
                 <p class="sub-item">• Refill — 6 x 30 bag</p>
-            </div>
-        </div>
-
-        <div class="product-card">
-            <img src="machine-ranger-collection.jpg" alt="Machine Ranger Candy Toys" class="product-img">
-            <h4 class="product-name">Machine Ranger</h4>
-            <div class="product-details">
-                <p class="sub-item">• Box — 12 boxes x 10 bags / carton</p>
-                <p class="sub-item">• Bag — 12 units x 12 bags / carton</p>
-            </div>
-        </div>
-
-        <div class="product-card">
-            <img src="egg-candy-toys.jpg" alt="Egg Candy & Toys" class="product-img">
-            <h4 class="product-name">Egg Candy & Toys</h4>
-            <div class="product-details">
+                <p class="sub-item">• Machine Ranger Box — 12 boxes x 10 bags / carton</p>
+                <p class="sub-item">• Machine Ranger Bag — 12 units x 12 bags / carton</p>
                 <p class="sub-item">• Power Egg — 1 x 12's x 12 trays / carton</p>
                 <p class="sub-item">• Lucky Egg — 1 x 12's x 12 trays / carton</p>
             </div>
         </div>
 
         <!-- ==================================== -->
-        <!-- GUMMY CANDY — Combined -->
+        <!-- GUMMY CANDY -->
         <!-- ==================================== -->
         <h3 class="category-title">Gummy Candy</h3>
         <div class="product-card">
-            <img src="gummy-icecream.jpg" alt="Ice Cream Gummy" class="product-img">
-            <h4 class="product-name">Ice Cream Shape Gummy</h4>
+            <img src="gummy-range.jpg" alt="Gummy Candy Range" class="product-img">
+            <h4 class="product-name">Gummy Candy Range</h4>
             <div class="product-details">
-                <p class="sub-item">• Blueberry — 30gm x 12's x 24 boxes / carton</p>
-                <p class="sub-item">• Watermelon — 30gm x 12's x 24 boxes / carton</p>
-            </div>
-        </div>
-
-        <div class="product-card">
-            <img src="gummy-yoyo-cola.jpg" alt="Yoyo Cola Gummy" class="product-img">
-            <h4 class="product-name">Yoyo Cola Gummy Candy</h4>
-            <div class="product-details">
-                <p>30gm x 12's x 24 boxes / carton</p>
-            </div>
-        </div>
-
-        <div class="product-card">
-            <img src="gummy-naughty-boy.jpg" alt="Naughty Boy Gummy Range" class="product-img">
-            <h4 class="product-name">Naughty Boy Gummy Range</h4>
-            <div class="product-details">
-                <p class="sub-item">• Pack — Blackcurrant / Assorted Fruits — 45gm x 12's x 12 outers</p>
-                <p class="sub-item">• Belt — Blackcurrant / Assorted Fruits — 45gm x 12's x 2 belts x 6 outers</p>
-                <p class="sub-item">• 35gm — Blackcurrant — 12's x 24 trays</p>
-                <p class="sub-item">• 30gm — Blackcurrant / Assorted — 12's x 24 trays/outers</p>
-                <p class="sub-item">• 45gm Jar — Blackcurrant — 12's x 12 trays</p>
-                <p class="sub-item">• Cute Bottle — Blackcurrant / Assorted — 55gm x 20 x 12 outers</p>
+                <p class="sub-item">• Ice Cream Gummy — Blueberry / Watermelon — 30gm x 12's x 24 boxes / carton</p>
+                <p class="sub-item">• Yoyo Cola Gummy — 30gm x 12's x 24 boxes / carton</p>
+                <p class="sub-item">• Naughty Boy Gummy — Pack / Belt / Jar — Blackcurrant / Assorted Fruits</p>
+                <p class="sub-item">• Cute Bottle Gummy — Blackcurrant / Assorted Fruits — 55gm x 20 x 12 outers / carton</p>
             </div>
         </div>
 
         <!-- ==================================== -->
-        <!-- CONFECTIONERY — Combined -->
+        <!-- CANDY & CONFECTIONERY -->
         <!-- ==================================== -->
         <h3 class="category-title">Candy & Confectionery</h3>
         <div class="product-card">
-            <img src="candy-range.jpg" alt="Candy Range" class="product-img">
-            <h4 class="product-name">Candy Collection</h4>
+            <img src="candy-confectionery.jpg" alt="Candy & Confectionery Range" class="product-img">
+            <h4 class="product-name">Candy & Confectionery Range</h4>
             <div class="product-details">
-                <p class="sub-item">• QQ Baby Bottle — 45gm x 12's x 24 outers</p>
-                <p class="sub-item">• Plum Candy — 45gm x 12's x 24 outers</p>
-                <p class="sub-item">• Mix Fruit Candy — 45gm x 12's x 24 outers</p>
-                <p class="sub-item">• Next & Next Chocolate — 35gm x 12's x 24 outers</p>
-            </div>
-        </div>
-
-        <div class="product-card">
-            <img src="macaroon-cookies.jpg" alt="Macaroon Cookies" class="product-img">
-            <h4 class="product-name">Macaroon Mini Cookies</h4>
-            <div class="product-details">
-                <p class="sub-item">• 180g Bag — 24 bags / carton</p>
-                <p class="sub-item">• 88g Cup — 12 cups / carton</p>
-            </div>
-        </div>
-
-        <div class="product-card">
-            <img src="paste-collection.jpg" alt="Paste Collection" class="product-img">
-            <h4 class="product-name">Strawberry & Chocolate Paste</h4>
-            <div class="product-details">
-                <p class="sub-item">• Box Pack — Strawberry / Chocolate — (10g×5) x 12 x 12 boxes</p>
-                <p class="sub-item">• Belt Pack — Strawberry / Chocolate — (10g×5) x 12 x 2 belts x 6 outers</p>
+                <p class="sub-item">• QQ Baby Bottle — 45gm x 12's x 24 outers / carton</p>
+                <p class="sub-item">• Plum Candy — 45gm x 12's x 24 outers / carton</p>
+                <p class="sub-item">• Mix Fruit Candy — 45gm x 12's x 24 outers / carton</p>
+                <p class="sub-item">• Next & Next Chocolate — 35gm x 12's x 24 outers / carton</p>
+                <p class="sub-item">• Macaroon Mini Cookies — 180g bag / 88g cup</p>
+                <p class="sub-item">• Strawberry & Chocolate Paste — Box Pack / Belt Pack</p>
             </div>
         </div>
 
         <!-- ==================================== -->
-        <!-- BISCUITS — Combined -->
+        <!-- BISCUITS & SNACKS -->
         <!-- ==================================== -->
         <h3 class="category-title">Biscuits & Snacks</h3>
         <div class="product-card">
-            <img src="biscuits-stick.jpg" alt="Biscuit Sticks" class="product-img">
-            <h4 class="product-name">Biscuit Sticks & Cereal Cups</h4>
+            <img src="biscuits-snacks.jpg" alt="Biscuits & Snacks Range" class="product-img">
+            <h4 class="product-name">Biscuits & Snacks Range</h4>
             <div class="product-details">
-                <p class="sub-item">• Chocolate Stick — 40gm x 12's x 6 trays</p>
-                <p class="sub-item">• Strawberry Stick — 40gm x 12's x 6 trays</p>
-                <p class="sub-item">• Cereal Cup — Strawberry — 30gm x 12 cups x 6 outers</p>
-                <p class="sub-item">• Cereal Cup — Chocolate — 30gm x 12 cups x 6 outers</p>
+                <p class="sub-item">• Biscuit Stick — Chocolate / Strawberry — 40gm x 12's x 6 trays / carton</p>
+                <p class="sub-item">• Cereal Cup — Strawberry / Chocolate — 30gm x 12 cups x 6 outers / carton</p>
             </div>
         </div>
 
         <!-- ==================================== -->
-        <!-- SERBUK ASAM — Combined -->
+        <!-- SERBUK ASAM -->
         <!-- ==================================== -->
         <h3 class="category-title">Serbuk Asam</h3>
         <div class="product-card">
             <img src="serbuk-asam.jpg" alt="Serbuk Asam Range" class="product-img">
-            <h4 class="product-name">Serbuk Asam</h4>
+            <h4 class="product-name">Serbuk Asam Range</h4>
             <div class="product-details">
                 <p class="sub-item">• 50gm Loose Form — 24's x 12 bags / carton</p>
                 <p class="sub-item">• 50gm Card Form — 12's x 2 cards x 10 bags / carton</p>
@@ -389,11 +129,11 @@
         </div>
 
         <!-- ==================================== -->
-        <!-- PARTY ITEMS — Combined -->
+        <!-- PARTY ITEMS -->
         <!-- ==================================== -->
         <h3 class="category-title">Party Items</h3>
         <div class="product-card">
-            <img src="party-balloons.jpg" alt="Party Balloons" class="product-img">
+            <img src="party-items.jpg" alt="Party Items" class="product-img">
             <h4 class="product-name">Party Balloons</h4>
             <div class="product-details">
                 <p>12 bags x 2 belts x 12 outers / per carton</p>
@@ -402,38 +142,3 @@
 
     </div>
 </section>
-
-<section id="contact">
-    <div class="container">
-        <h2>Contact Us</h2>
-        <div class="contact-grid">
-            <div>
-                <h3 style="color: var(--primary-darker); margin-bottom: 15px;">Company Details</h3>
-                <p><strong>Ayoyo Products (M) Sdn. Bhd.</strong></p>
-                <p>No. 3, Jalan Bistari 4</p>
-                <p>Taman Industri Jaya</p>
-                <p>81300 Skudai, Johor Bahru</p>
-            </div>
-            <div>
-                <h3 style="color: var(--primary-darker); margin-bottom: 15px;">Get In Touch</h3>
-                <p><strong>Phone:</strong> +60 197103417</p>
-                <p><strong>Email:</strong> ayoyoproducts@gmail.com</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<footer>
-    <div class="container">
-        <p>&copy; 2026 Ayoyo Products (M) Sdn. Bhd. All Rights Reserved.</p>
-    </div>
-</footer>
-
-<script>
-    const menuBtn = document.getElementById('menuBtn');
-    const navMenu = document.getElementById('navMenu');
-    menuBtn.addEventListener('click', () => navMenu.classList.toggle('open'));
-</script>
-
-</body>
-</html>
