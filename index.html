@@ -98,6 +98,15 @@
             border: 3px solid var(--primary-light);
         }
 
+        .why-section { background: var(--primary-light); }
+        .benefits { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 25px; }
+        .benefit-card { 
+            background: white; padding: 25px; border-radius: 10px;
+            box-shadow: 0 3px 8px rgba(164,198,57,0.12);
+            border-top: 4px solid var(--primary);
+        }
+        .benefit-card h3 { margin-bottom: 10px; font-size: 1.1rem; color: var(--primary-darker); }
+
         .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; }
         .contact-info p { margin-bottom: 10px; }
         .contact-info strong { color: var(--primary-darker); }
@@ -125,6 +134,7 @@
         <span class="menu-toggle" id="menuBtn">☰</span>
         <nav id="navMenu">
             <a href="#about">About Us</a>
+            <a href="#why">Why Partner With Us</a>
             <a href="#products">Our Products</a>
             <a href="#contact">Contact</a>
         </nav>
@@ -149,6 +159,30 @@
             </div>
             <div>
                 <img src="factory.jpg" alt="Ayoyo Products Factory" class="about-img">
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="why" class="why-section">
+    <div class="container">
+        <h2>Why Partner With Us</h2>
+        <div class="benefits">
+            <div class="benefit-card">
+                <h3>Certified Quality</h3>
+                <p>JAKIM Halal-certified and MESTI-certified — assurance of trusted standards for every product.</p>
+            </div>
+            <div class="benefit-card">
+                <h3>Better Margins</h3>
+                <p>Direct-from-manufacturer pricing gives you better margins while keeping your products affordable for customers.</p>
+            </div>
+            <div class="benefit-card">
+                <h3>OEM & Private Label</h3>
+                <p>We welcome OEM and private-label partnerships to bring your unique snack concepts to life.</p>
+            </div>
+            <div class="benefit-card">
+                <h3>Reliable Production</h3>
+                <p>Our well-equipped factory enables consistent, large-scale production to meet your demand reliably and on time.</p>
             </div>
         </div>
     </div>
@@ -257,7 +291,7 @@
             </div>
         </div>
 
-        <!-- 9. STRAWBERRY & CHOCOLATE PASTE — BOX PACK -->
+        <!-- 9. STRAWBERRY & CHOCOLATE PASTE -->
         <h3 class="category-title">Strawberry & Chocolate Paste</h3>
         <div class="product-card">
             <img src="paste-box.jpg" alt="Strawberry & Chocolate Paste — Box Pack" class="product-img">
