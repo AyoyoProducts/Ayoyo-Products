@@ -92,11 +92,13 @@
             box-shadow: 0 4px 14px rgba(164,198,57,0.15);
             border: 2px solid var(--border-green);
             overflow: hidden;
-            transition: transform 0.3s, box-shadow 0.3s;
+            transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+            cursor: pointer;
         }
         .product-category:hover {
             transform: translateY(-4px);
             box-shadow: 0 8px 20px rgba(164,198,57,0.25);
+            background: var(--soft-bg);
         }
         .category-link {
             display: flex;
@@ -106,7 +108,6 @@
             text-decoration: none;
             color: inherit;
         }
-        .category-link:hover { background: var(--soft-bg); }
         .category-img {
             width: 120px;
             height: 120px;
@@ -126,13 +127,31 @@
             align-items: center;
             flex-wrap: wrap;
         }
-        .arrow-icon {
-            font-size: 1.5rem;
-            color: var(--primary);
+        /* Clear Click Indicator */
+        .click-indicator {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: var(--primary);
+            color: white;
+            font-size: 0.85rem;
+            font-weight: 600;
+            padding: 8px 16px;
+            border-radius: 20px;
             margin-left: 15px;
+            transition: all 0.3s ease;
+        }
+        .product-category:hover .click-indicator {
+            background: var(--primary-darker);
+            transform: translateX(5px);
+        }
+        .click-text { display: inline; }
+        .click-arrow { 
+            font-size: 1.1rem; 
+            font-weight: bold;
             transition: transform 0.3s ease;
         }
-        .product-category:hover .arrow-icon { transform: translateX(5px); }
+        .product-category:hover .click-arrow { transform: translateX(3px); }
 
         /* Detail Page Layout */
         .detail-page { display: none; }
@@ -165,11 +184,31 @@
             color: var(--text-dark);
         }
 
-        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
-        .about-img { 
+        /* About Section with Snack Photos */
+        .about-section { position: relative; overflow: hidden; }
+        .about-grid { 
+            display: grid; 
+            grid-template-columns: 1.2fr 1fr; 
+            gap: 30px; 
+            align-items: center; 
+        }
+        .about-img-main { 
             width: 100%; border-radius: 10px; 
             box-shadow: 0 4px 12px rgba(164,198,57,0.2); 
             border: 3px solid var(--primary-light);
+        }
+        .about-snack-row {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .about-snack-img {
+            flex: 1;
+            height: 140px;
+            object-fit: cover;
+            border-radius: 10px;
+            border: 3px solid var(--primary-light);
+            box-shadow: 0 3px 10px rgba(164,198,57,0.15);
         }
 
         .why-section { background: var(--primary-light); }
@@ -201,9 +240,12 @@
             .category-link { flex-direction: column; text-align: center; }
             .category-img { margin-right: 0; margin-bottom: 15px; }
             .category-title { justify-content: center; }
-            .arrow-icon { margin-left: 0; margin-top: 10px; }
+            .click-indicator { margin-left: 0; margin-top: 12px; }
+            .click-text { display: none; }
             .best-seller-badge { margin-left: 0; margin-top: 10px; }
             .detail-img { height: 200px; }
+            .about-snack-row { flex-direction: column; }
+            .about-snack-img { height: 100px; }
         }
     </style>
 </head>
@@ -238,16 +280,21 @@
         </div>
     </section>
 
-    <section id="about">
+    <section id="about" class="about-section">
         <div class="container">
             <h2>About Us</h2>
             <div class="about-grid">
                 <div>
                     <h3 style="color: var(--primary-darker); margin-bottom: 15px;">Who We Are</h3>
                     <p>Based in Johor Bahru and established since 1996, Ayoyo Products is dedicated to crafting high-quality snacks. We are especially proud of our pudding, alongside our full collection of confectionery and beverage products.</p>
+                    <p style="margin-top: 12px;">From our well-equipped factory, we bring delicious, Halal-certified treats to tables across Malaysia and beyond. Every product is made with care, quality ingredients, and a commitment to excellence.</p>
                 </div>
                 <div>
-                    <img src="factory.jpg" alt="Ayoyo Products Factory" class="about-img">
+                    <img src="factory.jpg" alt="Ayoyo Products Factory" class="about-img-main">
+                    <div class="about-snack-row">
+                        <img src="pudding-120g.jpg" alt="Our Premium Pudding" class="about-snack-img">
+                        <img src="mini-pudding-25g.jpg" alt="Our Mini Pudding" class="about-snack-img">
+                    </div>
                 </div>
             </div>
         </div>
@@ -279,14 +326,17 @@
 
     <section id="products">
         <div class="container">
-            <h2>Our Products — Click Category to View</h2>
+            <h2>Our Products</h2>
 
             <!-- 1. PUDDING 120g -->
             <div class="product-category">
                 <a class="category-link" href="#pudding-120g" onclick="showDetail('pudding-120g'); return false;">
                     <img src="pudding-120g.jpg" alt="Pudding 120g" class="category-img">
                     <h3 class="category-title">Pudding 120g <span class="best-seller-badge">⭐ BEST SELLER</span>
-                        <span class="arrow-icon">→</span>
+                        <span class="click-indicator">
+                            <span class="click-text">Click to view</span>
+                            <span class="click-arrow">➤</span>
+                        </span>
                     </h3>
                 </a>
             </div>
@@ -296,7 +346,10 @@
                 <a class="category-link" href="#mini-pudding-25g" onclick="showDetail('mini-pudding-25g'); return false;">
                     <img src="mini-pudding-25g.jpg" alt="Mini Pudding 25g" class="category-img">
                     <h3 class="category-title">Mini Pudding 25g <span class="best-seller-badge">⭐ BEST SELLER</span>
-                        <span class="arrow-icon">→</span>
+                        <span class="click-indicator">
+                            <span class="click-text">Click to view</span>
+                            <span class="click-arrow">➤</span>
+                        </span>
                     </h3>
                 </a>
             </div>
@@ -306,7 +359,10 @@
                 <a class="category-link" href="#nata-de-coco" onclick="showDetail('nata-de-coco'); return false;">
                     <img src="nata-de-coco.jpg" alt="Nata de Coco" class="category-img">
                     <h3 class="category-title">Nata de Coco
-                        <span class="arrow-icon">→</span>
+                        <span class="click-indicator">
+                            <span class="click-text">Click to view</span>
+                            <span class="click-arrow">➤</span>
+                        </span>
                     </h3>
                 </a>
             </div>
@@ -316,7 +372,10 @@
                 <a class="category-link" href="#biscuit-sticks" onclick="showDetail('biscuit-sticks'); return false;">
                     <img src="biscuit-sticks.jpg" alt="Biscuit Sticks" class="category-img">
                     <h3 class="category-title">Biscuit Sticks
-                        <span class="arrow-icon">→</span>
+                        <span class="click-indicator">
+                            <span class="click-text">Click to view</span>
+                            <span class="click-arrow">➤</span>
+                        </span>
                     </h3>
                 </a>
             </div>
@@ -326,7 +385,10 @@
                 <a class="category-link" href="#cereal-snacks" onclick="showDetail('cereal-snacks'); return false;">
                     <img src="cereal-snacks.jpg" alt="Cereal Snacks" class="category-img">
                     <h3 class="category-title">Cereal Snacks
-                        <span class="arrow-icon">→</span>
+                        <span class="click-indicator">
+                            <span class="click-text">Click to view</span>
+                            <span class="click-arrow">➤</span>
+                        </span>
                     </h3>
                 </a>
             </div>
@@ -336,7 +398,10 @@
                 <a class="category-link" href="#macaron-cookies" onclick="showDetail('macaron-cookies'); return false;">
                     <img src="macaron-cookies.jpg" alt="Macaron Mini Cookies" class="category-img">
                     <h3 class="category-title">Macaron Mini Cookies
-                        <span class="arrow-icon">→</span>
+                        <span class="click-indicator">
+                            <span class="click-text">Click to view</span>
+                            <span class="click-arrow">➤</span>
+                        </span>
                     </h3>
                 </a>
             </div>
@@ -346,7 +411,10 @@
                 <a class="category-link" href="#gummy-naughty-boy" onclick="showDetail('gummy-naughty-boy'); return false;">
                     <img src="naughty-boy-gummy.jpg" alt="Naughty Boy Series" class="category-img">
                     <h3 class="category-title">Gummy Candy — Naughty Boy Series
-                        <span class="arrow-icon">→</span>
+                        <span class="click-indicator">
+                            <span class="click-text">Click to view</span>
+                            <span class="click-arrow">➤</span>
+                        </span>
                     </h3>
                 </a>
             </div>
@@ -356,7 +424,10 @@
                 <a class="category-link" href="#other-gummy" onclick="showDetail('other-gummy'); return false;">
                     <img src="yoyo-cola-gummy.jpg" alt="Other Gummy Candy" class="category-img">
                     <h3 class="category-title">Other Gummy Candy
-                        <span class="arrow-icon">→</span>
+                        <span class="click-indicator">
+                            <span class="click-text">Click to view</span>
+                            <span class="click-arrow">➤</span>
+                        </span>
                     </h3>
                 </a>
             </div>
@@ -366,7 +437,10 @@
                 <a class="category-link" href="#candy" onclick="showDetail('candy'); return false;">
                     <img src="candy-collection.jpg" alt="Candy" class="category-img">
                     <h3 class="category-title">Candy
-                        <span class="arrow-icon">→</span>
+                        <span class="click-indicator">
+                            <span class="click-text">Click to view</span>
+                            <span class="click-arrow">➤</span>
+                        </span>
                     </h3>
                 </a>
             </div>
@@ -376,7 +450,10 @@
                 <a class="category-link" href="#chocolate-paste" onclick="showDetail('chocolate-paste'); return false;">
                     <img src="chocolate-paste.jpg" alt="Chocolate Paste" class="category-img">
                     <h3 class="category-title">Chocolate Paste
-                        <span class="arrow-icon">→</span>
+                        <span class="click-indicator">
+                            <span class="click-text">Click to view</span>
+                            <span class="click-arrow">➤</span>
+                        </span>
                     </h3>
                 </a>
             </div>
@@ -386,7 +463,10 @@
                 <a class="category-link" href="#serbuk-asam" onclick="showDetail('serbuk-asam'); return false;">
                     <img src="serbuk-asam-50g.jpg" alt="Serbuk Asam 50g" class="category-img">
                     <h3 class="category-title">Serbuk Asam 50g
-                        <span class="arrow-icon">→</span>
+                        <span class="click-indicator">
+                            <span class="click-text">Click to view</span>
+                            <span class="click-arrow">➤</span>
+                        </span>
                     </h3>
                 </a>
             </div>
@@ -396,7 +476,10 @@
                 <a class="category-link" href="#toys-candy" onclick="showDetail('toys-candy'); return false;">
                     <img src="toys-candy.jpg" alt="Toys Candy" class="category-img">
                     <h3 class="category-title">Toys Candy
-                        <span class="arrow-icon">→</span>
+                        <span class="click-indicator">
+                            <span class="click-text">Click to view</span>
+                            <span class="click-arrow">➤</span>
+                        </span>
                     </h3>
                 </a>
             </div>
@@ -406,7 +489,10 @@
                 <a class="category-link" href="#other-toys" onclick="showDetail('other-toys'); return false;">
                     <img src="other-toys.jpg" alt="Other Toys" class="category-img">
                     <h3 class="category-title">Other Toys
-                        <span class="arrow-icon">→</span>
+                        <span class="click-indicator">
+                            <span class="click-text">Click to view</span>
+                            <span class="click-arrow">➤</span>
+                        </span>
                     </h3>
                 </a>
             </div>
@@ -759,10 +845,8 @@
     const allDetailPages = document.querySelectorAll('.detail-page');
 
     function showDetail(pageId) {
-        // Hide everything
         mainPage.style.display = 'none';
         allDetailPages.forEach(p => p.classList.remove('active'));
-        // Show selected page
         const targetPage = document.getElementById('page-' + pageId);
         if (targetPage) {
             targetPage.classList.add('active');
@@ -772,7 +856,6 @@
     }
 
     function goHome() {
-        // Hide all detail pages, show main page
         allDetailPages.forEach(p => p.classList.remove('active'));
         detailContainer.style.display = 'none';
         mainPage.style.display = 'block';
@@ -781,7 +864,6 @@
         return false;
     }
 
-    // Handle hash in URL for direct linking
     window.addEventListener('load', () => {
         const hash = window.location.hash.replace('#', '');
         if (hash && document.getElementById('page-' + hash)) {
