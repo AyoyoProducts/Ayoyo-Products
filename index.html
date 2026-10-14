@@ -184,7 +184,7 @@
             color: var(--text-dark);
         }
 
-        /* About Section with Snack Photos */
+        /* About Section */
         .about-section { position: relative; overflow: hidden; }
         .about-grid { 
             display: grid; 
@@ -196,19 +196,6 @@
             width: 100%; border-radius: 10px; 
             box-shadow: 0 4px 12px rgba(164,198,57,0.2); 
             border: 3px solid var(--primary-light);
-        }
-        .about-snack-row {
-            display: flex;
-            gap: 15px;
-            margin-top: 20px;
-        }
-        .about-snack-img {
-            flex: 1;
-            height: 140px;
-            object-fit: cover;
-            border-radius: 10px;
-            border: 3px solid var(--primary-light);
-            box-shadow: 0 3px 10px rgba(164,198,57,0.15);
         }
 
         .why-section { background: var(--primary-light); }
@@ -244,8 +231,6 @@
             .click-text { display: none; }
             .best-seller-badge { margin-left: 0; margin-top: 10px; }
             .detail-img { height: 200px; }
-            .about-snack-row { flex-direction: column; }
-            .about-snack-img { height: 100px; }
         }
     </style>
 </head>
@@ -291,10 +276,6 @@
                 </div>
                 <div>
                     <img src="factory.jpg" alt="Ayoyo Products Factory" class="about-img-main">
-                    <div class="about-snack-row">
-                        <img src="pudding-120g.jpg" alt="Our Premium Pudding" class="about-snack-img">
-                        <img src="mini-pudding-25g.jpg" alt="Our Mini Pudding" class="about-snack-img">
-                    </div>
                 </div>
             </div>
         </div>
